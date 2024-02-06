@@ -1,7 +1,3 @@
 export default function Home() {
-  return (
-    <main>
-      <div>Hello World</div>
-    </main>
-  );
+  return <div className="bg-slate-500">Hello World</div>;
 }
