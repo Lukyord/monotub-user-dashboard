@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-import { cn } from "@/lib/utils";
-import { GiMushroomGills } from "react-icons/gi";
+import { cn } from "@/lib/utils"
+import { GiMushroomGills } from "react-icons/gi"
 
 export default function NavBar() {
-  const currentPath = usePathname();
+  const currentPath = usePathname()
 
   const links = [
     { href: "/", label: "Dashboard" },
     { href: "/issues", label: "Issues" },
-  ];
+  ]
 
   return (
-    <nav className="flex border-b mb-5 px-5 h-14 items-center gap-8">
+    <nav className="mb-5 flex h-14 items-center gap-8 border-b px-5">
       <Link href="/">
         <GiMushroomGills size={30} />
       </Link>
@@ -28,7 +28,7 @@ export default function NavBar() {
                     ${cn({
                       "text-zinc-800": currentPath === link.href,
                       "text-zinc-500": currentPath !== link.href,
-                      "hover:text-zinc-800 transition-colors": true,
+                      "transition-colors hover:text-zinc-800": true,
                     })}
                   `}
             >
@@ -38,5 +38,5 @@ export default function NavBar() {
         ))}
       </ul>
     </nav>
-  );
+  )
 }
