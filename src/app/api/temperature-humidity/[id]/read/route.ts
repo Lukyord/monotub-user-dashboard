@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getTempHumidSchema } from "./getTempHumidSchema"
-import prisma from "@/lib/prisma"
+import prisma from "@prisma_/client"
 
 export async function POST(request: NextRequest, context: any) {
   const { params } = context
