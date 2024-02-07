@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Issue {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  status      Status   @default(OPEN)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Monotub {
+  id          Int      @id @default(autoincrement())
+  name        String
+  createdAt   DateTime @default(now())
+  
+  tempHumidRecords TemperatureHumidity[]
+}
+
+model TemperatureHumidity {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  temperature Float
+  humidity    Float
+  hourOfDay   Int
+  date        String
+
+  monotub     Monotub @relation(fields: [monotubId], references: [id])
+  monotubId   Int      
+  
+  @@unique([monotubId, date, hourOfDay])
+}
+
+enum Status {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
