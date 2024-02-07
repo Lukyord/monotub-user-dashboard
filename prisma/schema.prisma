@@ -19,6 +19,17 @@ model Issue {
   updatedAt   DateTime @updatedAt
 }
 
+model TemperatureHumidity {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  temperature Float
+  humidity    Float
+  hourOfDay   Int
+  date        String
+
+  @@unique([date, hourOfDay])
+}
+
 enum Status {
   OPEN
   IN_PROGRESS
