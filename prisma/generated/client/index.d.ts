@@ -1992,28 +1992,18 @@ export namespace Prisma {
 
   export type AggregateMonotub = {
     _count: MonotubCountAggregateOutputType | null
-    _avg: MonotubAvgAggregateOutputType | null
-    _sum: MonotubSumAggregateOutputType | null
     _min: MonotubMinAggregateOutputType | null
     _max: MonotubMaxAggregateOutputType | null
   }
 
-  export type MonotubAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type MonotubSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type MonotubMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     createdAt: Date | null
   }
 
   export type MonotubMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     name: string | null
     createdAt: Date | null
   }
@@ -2025,14 +2015,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type MonotubAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type MonotubSumAggregateInputType = {
-    id?: true
-  }
 
   export type MonotubMinAggregateInputType = {
     id?: true
@@ -2091,18 +2073,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: MonotubAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: MonotubSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: MonotubMinAggregateInputType
@@ -2133,19 +2103,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: MonotubCountAggregateInputType | true
-    _avg?: MonotubAvgAggregateInputType
-    _sum?: MonotubSumAggregateInputType
     _min?: MonotubMinAggregateInputType
     _max?: MonotubMaxAggregateInputType
   }
 
   export type MonotubGroupByOutputType = {
-    id: number
+    id: string
     name: string
     createdAt: Date
     _count: MonotubCountAggregateOutputType | null
-    _avg: MonotubAvgAggregateOutputType | null
-    _sum: MonotubSumAggregateOutputType | null
     _min: MonotubMinAggregateOutputType | null
     _max: MonotubMaxAggregateOutputType | null
   }
@@ -2190,7 +2156,7 @@ export namespace Prisma {
       tempHumidRecords: Prisma.$TemperatureHumidityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       name: string
       createdAt: Date
     }, ExtArgs["result"]["monotub"]>
@@ -2588,7 +2554,7 @@ export namespace Prisma {
    * Fields of the Monotub model
    */ 
   interface MonotubFieldRefs {
-    readonly id: FieldRef<"Monotub", 'Int'>
+    readonly id: FieldRef<"Monotub", 'String'>
     readonly name: FieldRef<"Monotub", 'String'>
     readonly createdAt: FieldRef<"Monotub", 'DateTime'>
   }
@@ -2956,7 +2922,6 @@ export namespace Prisma {
     temperature: number | null
     humidity: number | null
     hourOfDay: number | null
-    monotubId: number | null
   }
 
   export type TemperatureHumiditySumAggregateOutputType = {
@@ -2964,7 +2929,6 @@ export namespace Prisma {
     temperature: number | null
     humidity: number | null
     hourOfDay: number | null
-    monotubId: number | null
   }
 
   export type TemperatureHumidityMinAggregateOutputType = {
@@ -2974,7 +2938,7 @@ export namespace Prisma {
     humidity: number | null
     hourOfDay: number | null
     date: string | null
-    monotubId: number | null
+    monotubId: string | null
   }
 
   export type TemperatureHumidityMaxAggregateOutputType = {
@@ -2984,7 +2948,7 @@ export namespace Prisma {
     humidity: number | null
     hourOfDay: number | null
     date: string | null
-    monotubId: number | null
+    monotubId: string | null
   }
 
   export type TemperatureHumidityCountAggregateOutputType = {
@@ -3004,7 +2968,6 @@ export namespace Prisma {
     temperature?: true
     humidity?: true
     hourOfDay?: true
-    monotubId?: true
   }
 
   export type TemperatureHumiditySumAggregateInputType = {
@@ -3012,7 +2975,6 @@ export namespace Prisma {
     temperature?: true
     humidity?: true
     hourOfDay?: true
-    monotubId?: true
   }
 
   export type TemperatureHumidityMinAggregateInputType = {
@@ -3139,7 +3101,7 @@ export namespace Prisma {
     humidity: number
     hourOfDay: number
     date: string
-    monotubId: number
+    monotubId: string
     _count: TemperatureHumidityCountAggregateOutputType | null
     _avg: TemperatureHumidityAvgAggregateOutputType | null
     _sum: TemperatureHumiditySumAggregateOutputType | null
@@ -3199,7 +3161,7 @@ export namespace Prisma {
       humidity: number
       hourOfDay: number
       date: string
-      monotubId: number
+      monotubId: string
     }, ExtArgs["result"]["temperatureHumidity"]>
     composites: {}
   }
@@ -3601,7 +3563,7 @@ export namespace Prisma {
     readonly humidity: FieldRef<"TemperatureHumidity", 'Float'>
     readonly hourOfDay: FieldRef<"TemperatureHumidity", 'Int'>
     readonly date: FieldRef<"TemperatureHumidity", 'String'>
-    readonly monotubId: FieldRef<"TemperatureHumidity", 'Int'>
+    readonly monotubId: FieldRef<"TemperatureHumidity", 'String'>
   }
     
 
@@ -4134,7 +4096,7 @@ export namespace Prisma {
     AND?: MonotubWhereInput | MonotubWhereInput[]
     OR?: MonotubWhereInput[]
     NOT?: MonotubWhereInput | MonotubWhereInput[]
-    id?: IntFilter<"Monotub"> | number
+    id?: StringFilter<"Monotub"> | string
     name?: StringFilter<"Monotub"> | string
     createdAt?: DateTimeFilter<"Monotub"> | Date | string
     tempHumidRecords?: TemperatureHumidityListRelationFilter
@@ -4148,7 +4110,7 @@ export namespace Prisma {
   }
 
   export type MonotubWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: MonotubWhereInput | MonotubWhereInput[]
     OR?: MonotubWhereInput[]
     NOT?: MonotubWhereInput | MonotubWhereInput[]
@@ -4162,17 +4124,15 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     _count?: MonotubCountOrderByAggregateInput
-    _avg?: MonotubAvgOrderByAggregateInput
     _max?: MonotubMaxOrderByAggregateInput
     _min?: MonotubMinOrderByAggregateInput
-    _sum?: MonotubSumOrderByAggregateInput
   }
 
   export type MonotubScalarWhereWithAggregatesInput = {
     AND?: MonotubScalarWhereWithAggregatesInput | MonotubScalarWhereWithAggregatesInput[]
     OR?: MonotubScalarWhereWithAggregatesInput[]
     NOT?: MonotubScalarWhereWithAggregatesInput | MonotubScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Monotub"> | number
+    id?: StringWithAggregatesFilter<"Monotub"> | string
     name?: StringWithAggregatesFilter<"Monotub"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Monotub"> | Date | string
   }
@@ -4187,7 +4147,7 @@ export namespace Prisma {
     humidity?: FloatFilter<"TemperatureHumidity"> | number
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    monotubId?: IntFilter<"TemperatureHumidity"> | number
+    monotubId?: StringFilter<"TemperatureHumidity"> | string
     monotub?: XOR<MonotubRelationFilter, MonotubWhereInput>
   }
 
@@ -4213,7 +4173,7 @@ export namespace Prisma {
     humidity?: FloatFilter<"TemperatureHumidity"> | number
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    monotubId?: IntFilter<"TemperatureHumidity"> | number
+    monotubId?: StringFilter<"TemperatureHumidity"> | string
     monotub?: XOR<MonotubRelationFilter, MonotubWhereInput>
   }, "id" | "monotubId_date_hourOfDay">
 
@@ -4242,7 +4202,7 @@ export namespace Prisma {
     humidity?: FloatWithAggregatesFilter<"TemperatureHumidity"> | number
     hourOfDay?: IntWithAggregatesFilter<"TemperatureHumidity"> | number
     date?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
-    monotubId?: IntWithAggregatesFilter<"TemperatureHumidity"> | number
+    monotubId?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
   }
 
   export type IssueCreateInput = {
@@ -4306,44 +4266,47 @@ export namespace Prisma {
   }
 
   export type MonotubCreateInput = {
+    id?: string
     name: string
     createdAt?: Date | string
     tempHumidRecords?: TemperatureHumidityCreateNestedManyWithoutMonotubInput
   }
 
   export type MonotubUncheckedCreateInput = {
-    id?: number
+    id?: string
     name: string
     createdAt?: Date | string
     tempHumidRecords?: TemperatureHumidityUncheckedCreateNestedManyWithoutMonotubInput
   }
 
   export type MonotubUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tempHumidRecords?: TemperatureHumidityUpdateManyWithoutMonotubNestedInput
   }
 
   export type MonotubUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tempHumidRecords?: TemperatureHumidityUncheckedUpdateManyWithoutMonotubNestedInput
   }
 
   export type MonotubCreateManyInput = {
-    id?: number
+    id?: string
     name: string
     createdAt?: Date | string
   }
 
   export type MonotubUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MonotubUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4364,7 +4327,7 @@ export namespace Prisma {
     humidity: number
     hourOfDay: number
     date: string
-    monotubId: number
+    monotubId: string
   }
 
   export type TemperatureHumidityUpdateInput = {
@@ -4383,7 +4346,7 @@ export namespace Prisma {
     humidity?: FloatFieldUpdateOperationsInput | number
     hourOfDay?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    monotubId?: IntFieldUpdateOperationsInput | number
+    monotubId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TemperatureHumidityCreateManyInput = {
@@ -4393,7 +4356,7 @@ export namespace Prisma {
     humidity: number
     hourOfDay: number
     date: string
-    monotubId: number
+    monotubId: string
   }
 
   export type TemperatureHumidityUpdateManyMutationInput = {
@@ -4411,7 +4374,7 @@ export namespace Prisma {
     humidity?: FloatFieldUpdateOperationsInput | number
     hourOfDay?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    monotubId?: IntFieldUpdateOperationsInput | number
+    monotubId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -4567,10 +4530,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type MonotubAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type MonotubMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -4581,10 +4540,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type MonotubSumOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -4604,7 +4559,7 @@ export namespace Prisma {
   }
 
   export type TemperatureHumidityMonotubIdDateHourOfDayCompoundUniqueInput = {
-    monotubId: number
+    monotubId: string
     date: string
     hourOfDay: number
   }
@@ -4624,7 +4579,6 @@ export namespace Prisma {
     temperature?: SortOrder
     humidity?: SortOrder
     hourOfDay?: SortOrder
-    monotubId?: SortOrder
   }
 
   export type TemperatureHumidityMaxOrderByAggregateInput = {
@@ -4652,7 +4606,6 @@ export namespace Prisma {
     temperature?: SortOrder
     humidity?: SortOrder
     hourOfDay?: SortOrder
-    monotubId?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -4935,16 +4888,17 @@ export namespace Prisma {
     humidity?: FloatFilter<"TemperatureHumidity"> | number
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    monotubId?: IntFilter<"TemperatureHumidity"> | number
+    monotubId?: StringFilter<"TemperatureHumidity"> | string
   }
 
   export type MonotubCreateWithoutTempHumidRecordsInput = {
+    id?: string
     name: string
     createdAt?: Date | string
   }
 
   export type MonotubUncheckedCreateWithoutTempHumidRecordsInput = {
-    id?: number
+    id?: string
     name: string
     createdAt?: Date | string
   }
@@ -4966,12 +4920,13 @@ export namespace Prisma {
   }
 
   export type MonotubUpdateWithoutTempHumidRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MonotubUncheckedUpdateWithoutTempHumidRecordsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

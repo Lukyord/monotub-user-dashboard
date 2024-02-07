@@ -17,7 +17,7 @@ export async function POST(request: NextRequest, context: any) {
       hourOfDay: body.hourOfDay,
       temperature: body.temperature,
       humidity: body.humidity,
-      monotubId: body.monotubId,
+      monotub: { connect: { id: params.id } },
     },
   })
 

@@ -9,11 +9,21 @@ async function getTempAndHumidity() {
 
 export default async function Home() {
   const records = await getTempAndHumidity()
-  console.log(records)
 
   return (
-    <div className="bg-slate-500">
-      <Button>Check Temp & Humidity</Button>
+    <div>
+      <Button className="m-4">Check Temp & Humidity</Button>
+      <ul className="px-8 py-4">
+        {records.map((record) => (
+          <li key={record.id}>
+            <p>Date: {record.date}</p>
+            <p>Time: {record.hourOfDay}:00</p>
+            <p>Temperature: {record.temperature}</p>
+            <p>Humidity: {record.humidity}</p>
+            <br />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

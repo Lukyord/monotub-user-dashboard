@@ -22,7 +22,7 @@ model Issue {
 }
 
 model Monotub {
-  id          Int      @id @default(autoincrement())
+  id          String      @id @default(uuid())
   name        String
   createdAt   DateTime @default(now())
   
@@ -38,7 +38,7 @@ model TemperatureHumidity {
   date        String
 
   monotub     Monotub @relation(fields: [monotubId], references: [id])
-  monotubId   Int      
+  monotubId   String      
   
   @@unique([monotubId, date, hourOfDay])
 }
