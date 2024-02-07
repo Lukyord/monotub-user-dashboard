@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import prisma from "@prisma_/client"
+import prisma from "@/lib/prisma"
 
 async function getTempAndHumidity() {
   const records = await prisma.temperatureHumidity.findMany({})
