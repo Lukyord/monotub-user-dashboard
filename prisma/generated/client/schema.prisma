@@ -24,7 +24,7 @@ model Issue {
 model Monotub {
   id          String      @id @default(uuid())
   name        String
-  createdAt   DateTime @default(now())
+  createdAt   DateTime    @default(now())
   
   tempHumidRecords TemperatureHumidity[]
 }
