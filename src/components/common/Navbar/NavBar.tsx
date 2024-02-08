@@ -1,9 +1,10 @@
 import React from "react"
 import Link from "next/link"
-import { SignedIn, UserButton } from "@clerk/nextjs"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 import { GiMushroomGills } from "react-icons/gi"
 import NavBarLink from "./NavBarLink"
+import { Button } from "@/components/ui/button"
 
 export default function NavBar() {
   const links = [
@@ -17,6 +18,7 @@ export default function NavBar() {
         <Link href="/">
           <GiMushroomGills size={30} />
         </Link>
+
         <ul className="flex gap-8">
           {links.map((link, index) => (
             <React.Fragment key={index}>
@@ -29,6 +31,16 @@ export default function NavBar() {
       <SignedIn>
         <UserButton afterSignOutUrl="/sign-in" />
       </SignedIn>
+      <SignedOut>
+        <div className="flex gap-3">
+          <Link href="/sign-in">
+            <Button>Sign In</Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button variant="secondary">Sign Up</Button>
+          </Link>
+        </div>
+      </SignedOut>
     </nav>
   )
 }

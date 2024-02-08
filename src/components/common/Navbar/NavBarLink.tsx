@@ -14,6 +14,7 @@ type NavBarLinkProps = {
 
 export default function NavBarLink({ link }: NavBarLinkProps) {
   const currentPath = usePathname()
+
   return (
     <li>
       <Link
