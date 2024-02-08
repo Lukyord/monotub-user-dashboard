@@ -107,15 +107,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.IssueScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.MonotubScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -141,14 +132,9 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-exports.Status = exports.$Enums.Status = {
-  OPEN: 'OPEN',
-  IN_PROGRESS: 'IN_PROGRESS',
-  CLOSED: 'CLOSED'
-};
+
 
 exports.Prisma.ModelName = {
-  Issue: 'Issue',
   Monotub: 'Monotub',
   TemperatureHumidity: 'TemperatureHumidity'
 };

@@ -14,11 +14,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Issue
- * 
- */
-export type Issue = $Result.DefaultSelection<Prisma.$IssuePayload>
-/**
  * Model Monotub
  * 
  */
@@ -30,32 +25,14 @@ export type Monotub = $Result.DefaultSelection<Prisma.$MonotubPayload>
 export type TemperatureHumidity = $Result.DefaultSelection<Prisma.$TemperatureHumidityPayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const Status: {
-  OPEN: 'OPEN',
-  IN_PROGRESS: 'IN_PROGRESS',
-  CLOSED: 'CLOSED'
-};
-
-export type Status = (typeof Status)[keyof typeof Status]
-
-}
-
-export type Status = $Enums.Status
-
-export const Status: typeof $Enums.Status
-
-/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Issues
- * const issues = await prisma.issue.findMany()
+ * // Fetch zero or more Monotubs
+ * const monotubs = await prisma.monotub.findMany()
  * ```
  *
  * 
@@ -75,8 +52,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Issues
-   * const issues = await prisma.issue.findMany()
+   * // Fetch zero or more Monotubs
+   * const monotubs = await prisma.monotub.findMany()
    * ```
    *
    * 
@@ -170,16 +147,6 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
       /**
-   * `prisma.issue`: Exposes CRUD operations for the **Issue** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Issues
-    * const issues = await prisma.issue.findMany()
-    * ```
-    */
-  get issue(): Prisma.IssueDelegate<ExtArgs>;
-
-  /**
    * `prisma.monotub`: Exposes CRUD operations for the **Monotub** model.
     * Example usage:
     * ```ts
@@ -668,7 +635,6 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Issue: 'Issue',
     Monotub: 'Monotub',
     TemperatureHumidity: 'TemperatureHumidity'
   };
@@ -687,76 +653,10 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'issue' | 'monotub' | 'temperatureHumidity'
+      modelProps: 'monotub' | 'temperatureHumidity'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
-      Issue: {
-        payload: Prisma.$IssuePayload<ExtArgs>
-        fields: Prisma.IssueFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.IssueFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.IssueFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          findFirst: {
-            args: Prisma.IssueFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.IssueFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          findMany: {
-            args: Prisma.IssueFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>[]
-          }
-          create: {
-            args: Prisma.IssueCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          createMany: {
-            args: Prisma.IssueCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.IssueDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          update: {
-            args: Prisma.IssueUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          deleteMany: {
-            args: Prisma.IssueDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.IssueUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.IssueUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$IssuePayload>
-          }
-          aggregate: {
-            args: Prisma.IssueAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateIssue>
-          }
-          groupBy: {
-            args: Prisma.IssueGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<IssueGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.IssueCountArgs<ExtArgs>,
-            result: $Utils.Optional<IssueCountAggregateOutputType> | number
-          }
-        }
-      }
       Monotub: {
         payload: Prisma.$MonotubPayload<ExtArgs>
         fields: Prisma.MonotubFieldRefs
@@ -1070,921 +970,6 @@ export namespace Prisma {
   /**
    * Models
    */
-
-  /**
-   * Model Issue
-   */
-
-  export type AggregateIssue = {
-    _count: IssueCountAggregateOutputType | null
-    _avg: IssueAvgAggregateOutputType | null
-    _sum: IssueSumAggregateOutputType | null
-    _min: IssueMinAggregateOutputType | null
-    _max: IssueMaxAggregateOutputType | null
-  }
-
-  export type IssueAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type IssueSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type IssueMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    description: string | null
-    status: $Enums.Status | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type IssueMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    description: string | null
-    status: $Enums.Status | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type IssueCountAggregateOutputType = {
-    id: number
-    title: number
-    description: number
-    status: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type IssueAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type IssueSumAggregateInputType = {
-    id?: true
-  }
-
-  export type IssueMinAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type IssueMaxAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type IssueCountAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    status?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type IssueAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Issue to aggregate.
-     */
-    where?: IssueWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Issues to fetch.
-     */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: IssueWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Issues from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Issues.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Issues
-    **/
-    _count?: true | IssueCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: IssueAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: IssueSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: IssueMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: IssueMaxAggregateInputType
-  }
-
-  export type GetIssueAggregateType<T extends IssueAggregateArgs> = {
-        [P in keyof T & keyof AggregateIssue]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateIssue[P]>
-      : GetScalarType<T[P], AggregateIssue[P]>
-  }
-
-
-
-
-  export type IssueGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IssueWhereInput
-    orderBy?: IssueOrderByWithAggregationInput | IssueOrderByWithAggregationInput[]
-    by: IssueScalarFieldEnum[] | IssueScalarFieldEnum
-    having?: IssueScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: IssueCountAggregateInputType | true
-    _avg?: IssueAvgAggregateInputType
-    _sum?: IssueSumAggregateInputType
-    _min?: IssueMinAggregateInputType
-    _max?: IssueMaxAggregateInputType
-  }
-
-  export type IssueGroupByOutputType = {
-    id: number
-    title: string
-    description: string
-    status: $Enums.Status
-    createdAt: Date
-    updatedAt: Date
-    _count: IssueCountAggregateOutputType | null
-    _avg: IssueAvgAggregateOutputType | null
-    _sum: IssueSumAggregateOutputType | null
-    _min: IssueMinAggregateOutputType | null
-    _max: IssueMaxAggregateOutputType | null
-  }
-
-  type GetIssueGroupByPayload<T extends IssueGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<IssueGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof IssueGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], IssueGroupByOutputType[P]>
-            : GetScalarType<T[P], IssueGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type IssueSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    description?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["issue"]>
-
-  export type IssueSelectScalar = {
-    id?: boolean
-    title?: boolean
-    description?: boolean
-    status?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-
-  export type $IssuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Issue"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      description: string
-      status: $Enums.Status
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["issue"]>
-    composites: {}
-  }
-
-
-  type IssueGetPayload<S extends boolean | null | undefined | IssueDefaultArgs> = $Result.GetResult<Prisma.$IssuePayload, S>
-
-  type IssueCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<IssueFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: IssueCountAggregateInputType | true
-    }
-
-  export interface IssueDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Issue'], meta: { name: 'Issue' } }
-    /**
-     * Find zero or one Issue that matches the filter.
-     * @param {IssueFindUniqueArgs} args - Arguments to find a Issue
-     * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends IssueFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueFindUniqueArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Issue that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {IssueFindUniqueOrThrowArgs} args - Arguments to find a Issue
-     * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends IssueFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Issue that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindFirstArgs} args - Arguments to find a Issue
-     * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends IssueFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueFindFirstArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Issue that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindFirstOrThrowArgs} args - Arguments to find a Issue
-     * @example
-     * // Get one Issue
-     * const issue = await prisma.issue.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends IssueFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Issues that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Issues
-     * const issues = await prisma.issue.findMany()
-     * 
-     * // Get first 10 Issues
-     * const issues = await prisma.issue.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const issueWithIdOnly = await prisma.issue.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends IssueFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Issue.
-     * @param {IssueCreateArgs} args - Arguments to create a Issue.
-     * @example
-     * // Create one Issue
-     * const Issue = await prisma.issue.create({
-     *   data: {
-     *     // ... data to create a Issue
-     *   }
-     * })
-     * 
-    **/
-    create<T extends IssueCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueCreateArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Issues.
-     *     @param {IssueCreateManyArgs} args - Arguments to create many Issues.
-     *     @example
-     *     // Create many Issues
-     *     const issue = await prisma.issue.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends IssueCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Issue.
-     * @param {IssueDeleteArgs} args - Arguments to delete one Issue.
-     * @example
-     * // Delete one Issue
-     * const Issue = await prisma.issue.delete({
-     *   where: {
-     *     // ... filter to delete one Issue
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends IssueDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueDeleteArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Issue.
-     * @param {IssueUpdateArgs} args - Arguments to update one Issue.
-     * @example
-     * // Update one Issue
-     * const issue = await prisma.issue.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends IssueUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueUpdateArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Issues.
-     * @param {IssueDeleteManyArgs} args - Arguments to filter Issues to delete.
-     * @example
-     * // Delete a few Issues
-     * const { count } = await prisma.issue.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends IssueDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, IssueDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Issues.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Issues
-     * const issue = await prisma.issue.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends IssueUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Issue.
-     * @param {IssueUpsertArgs} args - Arguments to update or create a Issue.
-     * @example
-     * // Update or create a Issue
-     * const issue = await prisma.issue.upsert({
-     *   create: {
-     *     // ... data to create a Issue
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Issue we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends IssueUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, IssueUpsertArgs<ExtArgs>>
-    ): Prisma__IssueClient<$Result.GetResult<Prisma.$IssuePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Issues.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueCountArgs} args - Arguments to filter Issues to count.
-     * @example
-     * // Count the number of Issues
-     * const count = await prisma.issue.count({
-     *   where: {
-     *     // ... the filter for the Issues we want to count
-     *   }
-     * })
-    **/
-    count<T extends IssueCountArgs>(
-      args?: Subset<T, IssueCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], IssueCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Issue.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends IssueAggregateArgs>(args: Subset<T, IssueAggregateArgs>): Prisma.PrismaPromise<GetIssueAggregateType<T>>
-
-    /**
-     * Group by Issue.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IssueGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends IssueGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: IssueGroupByArgs['orderBy'] }
-        : { orderBy?: IssueGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, IssueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIssueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Issue model
-   */
-  readonly fields: IssueFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Issue.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__IssueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the Issue model
-   */ 
-  interface IssueFieldRefs {
-    readonly id: FieldRef<"Issue", 'Int'>
-    readonly title: FieldRef<"Issue", 'String'>
-    readonly description: FieldRef<"Issue", 'String'>
-    readonly status: FieldRef<"Issue", 'Status'>
-    readonly createdAt: FieldRef<"Issue", 'DateTime'>
-    readonly updatedAt: FieldRef<"Issue", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * Issue findUnique
-   */
-  export type IssueFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter, which Issue to fetch.
-     */
-    where: IssueWhereUniqueInput
-  }
-
-
-  /**
-   * Issue findUniqueOrThrow
-   */
-  export type IssueFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter, which Issue to fetch.
-     */
-    where: IssueWhereUniqueInput
-  }
-
-
-  /**
-   * Issue findFirst
-   */
-  export type IssueFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter, which Issue to fetch.
-     */
-    where?: IssueWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Issues to fetch.
-     */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Issues.
-     */
-    cursor?: IssueWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Issues from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Issues.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Issues.
-     */
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
-  }
-
-
-  /**
-   * Issue findFirstOrThrow
-   */
-  export type IssueFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter, which Issue to fetch.
-     */
-    where?: IssueWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Issues to fetch.
-     */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Issues.
-     */
-    cursor?: IssueWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Issues from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Issues.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Issues.
-     */
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
-  }
-
-
-  /**
-   * Issue findMany
-   */
-  export type IssueFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter, which Issues to fetch.
-     */
-    where?: IssueWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Issues to fetch.
-     */
-    orderBy?: IssueOrderByWithRelationInput | IssueOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Issues.
-     */
-    cursor?: IssueWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Issues from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Issues.
-     */
-    skip?: number
-    distinct?: IssueScalarFieldEnum | IssueScalarFieldEnum[]
-  }
-
-
-  /**
-   * Issue create
-   */
-  export type IssueCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * The data needed to create a Issue.
-     */
-    data: XOR<IssueCreateInput, IssueUncheckedCreateInput>
-  }
-
-
-  /**
-   * Issue createMany
-   */
-  export type IssueCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Issues.
-     */
-    data: IssueCreateManyInput | IssueCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * Issue update
-   */
-  export type IssueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * The data needed to update a Issue.
-     */
-    data: XOR<IssueUpdateInput, IssueUncheckedUpdateInput>
-    /**
-     * Choose, which Issue to update.
-     */
-    where: IssueWhereUniqueInput
-  }
-
-
-  /**
-   * Issue updateMany
-   */
-  export type IssueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Issues.
-     */
-    data: XOR<IssueUpdateManyMutationInput, IssueUncheckedUpdateManyInput>
-    /**
-     * Filter which Issues to update
-     */
-    where?: IssueWhereInput
-  }
-
-
-  /**
-   * Issue upsert
-   */
-  export type IssueUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * The filter to search for the Issue to update in case it exists.
-     */
-    where: IssueWhereUniqueInput
-    /**
-     * In case the Issue found by the `where` argument doesn't exist, create a new Issue with this data.
-     */
-    create: XOR<IssueCreateInput, IssueUncheckedCreateInput>
-    /**
-     * In case the Issue was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<IssueUpdateInput, IssueUncheckedUpdateInput>
-  }
-
-
-  /**
-   * Issue delete
-   */
-  export type IssueDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-    /**
-     * Filter which Issue to delete.
-     */
-    where: IssueWhereUniqueInput
-  }
-
-
-  /**
-   * Issue deleteMany
-   */
-  export type IssueDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Issues to delete
-     */
-    where?: IssueWhereInput
-  }
-
-
-  /**
-   * Issue without action
-   */
-  export type IssueDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Issue
-     */
-    select?: IssueSelect<ExtArgs> | null
-  }
-
-
 
   /**
    * Model Monotub
@@ -3905,18 +2890,6 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const IssueScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    description: 'description',
-    status: 'status',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type IssueScalarFieldEnum = (typeof IssueScalarFieldEnum)[keyof typeof IssueScalarFieldEnum]
-
-
   export const MonotubScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -3961,20 +2934,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -3989,20 +2948,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Status'
-   */
-  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
-    
-
-
-  /**
-   * Reference to a field of type 'Status[]'
-   */
-  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -4013,6 +2958,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -4032,65 +2991,6 @@ export namespace Prisma {
    * Deep Input Types
    */
 
-
-  export type IssueWhereInput = {
-    AND?: IssueWhereInput | IssueWhereInput[]
-    OR?: IssueWhereInput[]
-    NOT?: IssueWhereInput | IssueWhereInput[]
-    id?: IntFilter<"Issue"> | number
-    title?: StringFilter<"Issue"> | string
-    description?: StringFilter<"Issue"> | string
-    status?: EnumStatusFilter<"Issue"> | $Enums.Status
-    createdAt?: DateTimeFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeFilter<"Issue"> | Date | string
-  }
-
-  export type IssueOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type IssueWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: IssueWhereInput | IssueWhereInput[]
-    OR?: IssueWhereInput[]
-    NOT?: IssueWhereInput | IssueWhereInput[]
-    title?: StringFilter<"Issue"> | string
-    description?: StringFilter<"Issue"> | string
-    status?: EnumStatusFilter<"Issue"> | $Enums.Status
-    createdAt?: DateTimeFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeFilter<"Issue"> | Date | string
-  }, "id">
-
-  export type IssueOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: IssueCountOrderByAggregateInput
-    _avg?: IssueAvgOrderByAggregateInput
-    _max?: IssueMaxOrderByAggregateInput
-    _min?: IssueMinOrderByAggregateInput
-    _sum?: IssueSumOrderByAggregateInput
-  }
-
-  export type IssueScalarWhereWithAggregatesInput = {
-    AND?: IssueScalarWhereWithAggregatesInput | IssueScalarWhereWithAggregatesInput[]
-    OR?: IssueScalarWhereWithAggregatesInput[]
-    NOT?: IssueScalarWhereWithAggregatesInput | IssueScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Issue"> | number
-    title?: StringWithAggregatesFilter<"Issue"> | string
-    description?: StringWithAggregatesFilter<"Issue"> | string
-    status?: EnumStatusWithAggregatesFilter<"Issue"> | $Enums.Status
-    createdAt?: DateTimeWithAggregatesFilter<"Issue"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Issue"> | Date | string
-  }
 
   export type MonotubWhereInput = {
     AND?: MonotubWhereInput | MonotubWhereInput[]
@@ -4205,66 +3105,6 @@ export namespace Prisma {
     monotubId?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
   }
 
-  export type IssueCreateInput = {
-    title: string
-    description: string
-    status?: $Enums.Status
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type IssueUncheckedCreateInput = {
-    id?: number
-    title: string
-    description: string
-    status?: $Enums.Status
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type IssueUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IssueUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IssueCreateManyInput = {
-    id?: number
-    title: string
-    description: string
-    status?: $Enums.Status
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type IssueUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IssueUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type MonotubCreateInput = {
     id?: string
     name: string
@@ -4377,17 +3217,6 @@ export namespace Prisma {
     monotubId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4403,13 +3232,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type EnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4419,99 +3241,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type IssueCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type IssueAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IssueMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type IssueMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type IssueSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusFilter<$PrismaModel>
-    _max?: NestedEnumStatusFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type TemperatureHumidityListRelationFilter = {
@@ -4540,6 +3269,49 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -4608,6 +3380,22 @@ export namespace Prisma {
     hourOfDay?: SortOrder
   }
 
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -4624,26 +3412,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type EnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type TemperatureHumidityCreateNestedManyWithoutMonotubInput = {
     create?: XOR<TemperatureHumidityCreateWithoutMonotubInput, TemperatureHumidityUncheckedCreateWithoutMonotubInput> | TemperatureHumidityCreateWithoutMonotubInput[] | TemperatureHumidityUncheckedCreateWithoutMonotubInput[]
     connectOrCreate?: TemperatureHumidityCreateOrConnectWithoutMonotubInput | TemperatureHumidityCreateOrConnectWithoutMonotubInput[]
@@ -4656,6 +3424,14 @@ export namespace Prisma {
     connectOrCreate?: TemperatureHumidityCreateOrConnectWithoutMonotubInput | TemperatureHumidityCreateOrConnectWithoutMonotubInput[]
     createMany?: TemperatureHumidityCreateManyMonotubInputEnvelope
     connect?: TemperatureHumidityWhereUniqueInput | TemperatureHumidityWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type TemperatureHumidityUpdateManyWithoutMonotubNestedInput = {
@@ -4700,23 +3476,20 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type MonotubUpdateOneRequiredWithoutTempHumidRecordsNestedInput = {
     create?: XOR<MonotubCreateWithoutTempHumidRecordsInput, MonotubUncheckedCreateWithoutTempHumidRecordsInput>
     connectOrCreate?: MonotubCreateOrConnectWithoutTempHumidRecordsInput
     upsert?: MonotubUpsertWithoutTempHumidRecordsInput
     connect?: MonotubWhereUniqueInput
     update?: XOR<XOR<MonotubUpdateToOneWithWhereWithoutTempHumidRecordsInput, MonotubUpdateWithoutTempHumidRecordsInput>, MonotubUncheckedUpdateWithoutTempHumidRecordsInput>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4733,13 +3506,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4749,33 +3515,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4795,14 +3534,15 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusFilter<$PrismaModel>
-    _max?: NestedEnumStatusFilter<$PrismaModel>
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -4817,6 +3557,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -4975,10 +3742,6 @@ export namespace Prisma {
      * @deprecated Use MonotubCountOutputTypeDefaultArgs instead
      */
     export type MonotubCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MonotubCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use IssueDefaultArgs instead
-     */
-    export type IssueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = IssueDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MonotubDefaultArgs instead
      */

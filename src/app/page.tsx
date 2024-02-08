@@ -10,5 +10,5 @@ import prisma from "@prisma_/client"
 export default async function Home() {
   // const records = await getTempAndHumidity()
 
-  return <div></div>
+  return <div>Hello world</div>
 }
