@@ -7,30 +7,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Monotub {
-  id          String      @id @default(uuid())
-  name        String
-  createdAt   DateTime    @default(now())
-  userIDs         String[]          @default([])
-  
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  userIDs   String[] @default([])
+
   tempHumidRecords TemperatureHumidity[]
 }
 
 model TemperatureHumidity {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  temperature Float
-  humidity    Float
-  hourOfDay   Int
-  date        String
+  id            Int           @id @default(autoincrement())
+  createdAt     DateTime      @default(now())
+  temperature   Float
+  humidity      Float
+  hourOfDay     Int
+  minute        Int
+  date          String
+  mushroomStage MushroomStage
 
-  monotub     Monotub @relation(fields: [monotubId], references: [id])
-  monotubId   String      
-  
+  monotub   Monotub @relation(fields: [monotubId], references: [id])
+  monotubId String
+
   @@unique([monotubId, date, hourOfDay])
+}
+
+enum MushroomStage {
+  INOCULATION
+  COLONIZATION
+  FRUITING
+  HARVESTING
 }
