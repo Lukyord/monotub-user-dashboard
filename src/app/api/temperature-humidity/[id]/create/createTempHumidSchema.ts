@@ -1,5 +1,4 @@
 import { z } from "zod"
-import prisma from "@prisma_/client"
 
 export enum MushroomStage {
   INOCULATION,
@@ -20,6 +19,11 @@ export const createTempHumidSchema = z.object({
     .refine((value) => [0, 15, 30, 45].includes(value), {
       message: "minute must be one of 0, 15, 30, or 45",
     }),
-  mushroomStage: z.nativeEnum(MushroomStage),
+  mushroomStage: z.enum([
+    "INOCULATION",
+    "COLONIZATION",
+    "FRUITING",
+    "HARVESTING",
+  ]),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
 })
