@@ -16,6 +16,7 @@ model Monotub {
   id          String      @id @default(uuid())
   name        String
   createdAt   DateTime    @default(now())
+  userIDs         String[]          @default([])
   
   tempHumidRecords TemperatureHumidity[]
 }
@@ -32,10 +33,4 @@ model TemperatureHumidity {
   monotubId   String      
   
   @@unique([monotubId, date, hourOfDay])
-}
-
-enum Status {
-  OPEN
-  IN_PROGRESS
-  CLOSED
 }

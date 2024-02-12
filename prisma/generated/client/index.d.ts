@@ -997,6 +997,7 @@ export namespace Prisma {
     id: number
     name: number
     createdAt: number
+    userIDs: number
     _all: number
   }
 
@@ -1017,6 +1018,7 @@ export namespace Prisma {
     id?: true
     name?: true
     createdAt?: true
+    userIDs?: true
     _all?: true
   }
 
@@ -1096,6 +1098,7 @@ export namespace Prisma {
     id: string
     name: string
     createdAt: Date
+    userIDs: string[]
     _count: MonotubCountAggregateOutputType | null
     _min: MonotubMinAggregateOutputType | null
     _max: MonotubMaxAggregateOutputType | null
@@ -1119,6 +1122,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    userIDs?: boolean
     tempHumidRecords?: boolean | Monotub$tempHumidRecordsArgs<ExtArgs>
     _count?: boolean | MonotubCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["monotub"]>
@@ -1127,6 +1131,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     createdAt?: boolean
+    userIDs?: boolean
   }
 
   export type MonotubInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1144,6 +1149,7 @@ export namespace Prisma {
       id: string
       name: string
       createdAt: Date
+      userIDs: string[]
     }, ExtArgs["result"]["monotub"]>
     composites: {}
   }
@@ -1542,6 +1548,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Monotub", 'String'>
     readonly name: FieldRef<"Monotub", 'String'>
     readonly createdAt: FieldRef<"Monotub", 'DateTime'>
+    readonly userIDs: FieldRef<"Monotub", 'String[]'>
   }
     
 
@@ -2893,7 +2900,8 @@ export namespace Prisma {
   export const MonotubScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    userIDs: 'userIDs'
   };
 
   export type MonotubScalarFieldEnum = (typeof MonotubScalarFieldEnum)[keyof typeof MonotubScalarFieldEnum]
@@ -2999,6 +3007,7 @@ export namespace Prisma {
     id?: StringFilter<"Monotub"> | string
     name?: StringFilter<"Monotub"> | string
     createdAt?: DateTimeFilter<"Monotub"> | Date | string
+    userIDs?: StringNullableListFilter<"Monotub">
     tempHumidRecords?: TemperatureHumidityListRelationFilter
   }
 
@@ -3006,6 +3015,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    userIDs?: SortOrder
     tempHumidRecords?: TemperatureHumidityOrderByRelationAggregateInput
   }
 
@@ -3016,6 +3026,7 @@ export namespace Prisma {
     NOT?: MonotubWhereInput | MonotubWhereInput[]
     name?: StringFilter<"Monotub"> | string
     createdAt?: DateTimeFilter<"Monotub"> | Date | string
+    userIDs?: StringNullableListFilter<"Monotub">
     tempHumidRecords?: TemperatureHumidityListRelationFilter
   }, "id">
 
@@ -3023,6 +3034,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    userIDs?: SortOrder
     _count?: MonotubCountOrderByAggregateInput
     _max?: MonotubMaxOrderByAggregateInput
     _min?: MonotubMinOrderByAggregateInput
@@ -3035,6 +3047,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Monotub"> | string
     name?: StringWithAggregatesFilter<"Monotub"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Monotub"> | Date | string
+    userIDs?: StringNullableListFilter<"Monotub">
   }
 
   export type TemperatureHumidityWhereInput = {
@@ -3109,6 +3122,7 @@ export namespace Prisma {
     id?: string
     name: string
     createdAt?: Date | string
+    userIDs?: MonotubCreateuserIDsInput | string[]
     tempHumidRecords?: TemperatureHumidityCreateNestedManyWithoutMonotubInput
   }
 
@@ -3116,6 +3130,7 @@ export namespace Prisma {
     id?: string
     name: string
     createdAt?: Date | string
+    userIDs?: MonotubCreateuserIDsInput | string[]
     tempHumidRecords?: TemperatureHumidityUncheckedCreateNestedManyWithoutMonotubInput
   }
 
@@ -3123,6 +3138,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
     tempHumidRecords?: TemperatureHumidityUpdateManyWithoutMonotubNestedInput
   }
 
@@ -3130,6 +3146,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
     tempHumidRecords?: TemperatureHumidityUncheckedUpdateManyWithoutMonotubNestedInput
   }
 
@@ -3137,18 +3154,21 @@ export namespace Prisma {
     id?: string
     name: string
     createdAt?: Date | string
+    userIDs?: MonotubCreateuserIDsInput | string[]
   }
 
   export type MonotubUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
   }
 
   export type MonotubUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
   }
 
   export type TemperatureHumidityCreateInput = {
@@ -3243,6 +3263,14 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type TemperatureHumidityListRelationFilter = {
     every?: TemperatureHumidityWhereInput
     some?: TemperatureHumidityWhereInput
@@ -3257,6 +3285,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     createdAt?: SortOrder
+    userIDs?: SortOrder
   }
 
   export type MonotubMaxOrderByAggregateInput = {
@@ -3412,6 +3441,10 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type MonotubCreateuserIDsInput = {
+    set: string[]
+  }
+
   export type TemperatureHumidityCreateNestedManyWithoutMonotubInput = {
     create?: XOR<TemperatureHumidityCreateWithoutMonotubInput, TemperatureHumidityUncheckedCreateWithoutMonotubInput> | TemperatureHumidityCreateWithoutMonotubInput[] | TemperatureHumidityUncheckedCreateWithoutMonotubInput[]
     connectOrCreate?: TemperatureHumidityCreateOrConnectWithoutMonotubInput | TemperatureHumidityCreateOrConnectWithoutMonotubInput[]
@@ -3432,6 +3465,11 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type MonotubUpdateuserIDsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type TemperatureHumidityUpdateManyWithoutMonotubNestedInput = {
@@ -3662,12 +3700,14 @@ export namespace Prisma {
     id?: string
     name: string
     createdAt?: Date | string
+    userIDs?: MonotubCreateuserIDsInput | string[]
   }
 
   export type MonotubUncheckedCreateWithoutTempHumidRecordsInput = {
     id?: string
     name: string
     createdAt?: Date | string
+    userIDs?: MonotubCreateuserIDsInput | string[]
   }
 
   export type MonotubCreateOrConnectWithoutTempHumidRecordsInput = {
@@ -3690,12 +3730,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
   }
 
   export type MonotubUncheckedUpdateWithoutTempHumidRecordsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userIDs?: MonotubUpdateuserIDsInput | string[]
   }
 
   export type TemperatureHumidityCreateManyMonotubInput = {

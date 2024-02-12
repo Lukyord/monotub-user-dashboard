@@ -110,7 +110,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.MonotubScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userIDs: 'userIDs'
 };
 
 exports.Prisma.TemperatureHumidityScalarFieldEnum = {
