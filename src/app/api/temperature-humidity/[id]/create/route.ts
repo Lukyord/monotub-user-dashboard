@@ -17,6 +17,8 @@ export async function POST(request: NextRequest, context: any) {
       hourOfDay: body.hourOfDay,
       temperature: body.temperature,
       humidity: body.humidity,
+      minute: body.minute,
+      mushroomStage: body.mushroomStage,
       monotub: { connect: { id: params.id } },
     },
   })
