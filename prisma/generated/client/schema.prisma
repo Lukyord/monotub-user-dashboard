@@ -22,24 +22,17 @@ model Monotub {
 }
 
 model TemperatureHumidity {
-  id            Int           @id @default(autoincrement())
-  createdAt     DateTime      @default(now())
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
   temperature   Float
   humidity      Float
   hourOfDay     Int
   minute        Int
   date          String
-  mushroomStage MushroomStage
+  mushroomStage String
 
   monotub   Monotub @relation(fields: [monotubId], references: [id])
   monotubId String
 
   @@unique([monotubId, date, hourOfDay])
-}
-
-enum MushroomStage {
-  INOCULATION
-  COLONIZATION
-  FRUITING
-  HARVESTING
 }

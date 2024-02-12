@@ -25,25 +25,6 @@ export type Monotub = $Result.DefaultSelection<Prisma.$MonotubPayload>
 export type TemperatureHumidity = $Result.DefaultSelection<Prisma.$TemperatureHumidityPayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const MushroomStage: {
-  INOCULATION: 'INOCULATION',
-  COLONIZATION: 'COLONIZATION',
-  FRUITING: 'FRUITING',
-  HARVESTING: 'HARVESTING'
-};
-
-export type MushroomStage = (typeof MushroomStage)[keyof typeof MushroomStage]
-
-}
-
-export type MushroomStage = $Enums.MushroomStage
-
-export const MushroomStage: typeof $Enums.MushroomStage
-
-/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -1952,7 +1933,7 @@ export namespace Prisma {
     hourOfDay: number | null
     minute: number | null
     date: string | null
-    mushroomStage: $Enums.MushroomStage | null
+    mushroomStage: string | null
     monotubId: string | null
   }
 
@@ -1964,7 +1945,7 @@ export namespace Prisma {
     hourOfDay: number | null
     minute: number | null
     date: string | null
-    mushroomStage: $Enums.MushroomStage | null
+    mushroomStage: string | null
     monotubId: string | null
   }
 
@@ -2129,7 +2110,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
     monotubId: string
     _count: TemperatureHumidityCountAggregateOutputType | null
     _avg: TemperatureHumidityAvgAggregateOutputType | null
@@ -2195,7 +2176,7 @@ export namespace Prisma {
       hourOfDay: number
       minute: number
       date: string
-      mushroomStage: $Enums.MushroomStage
+      mushroomStage: string
       monotubId: string
     }, ExtArgs["result"]["temperatureHumidity"]>
     composites: {}
@@ -2599,7 +2580,7 @@ export namespace Prisma {
     readonly hourOfDay: FieldRef<"TemperatureHumidity", 'Int'>
     readonly minute: FieldRef<"TemperatureHumidity", 'Int'>
     readonly date: FieldRef<"TemperatureHumidity", 'String'>
-    readonly mushroomStage: FieldRef<"TemperatureHumidity", 'MushroomStage'>
+    readonly mushroomStage: FieldRef<"TemperatureHumidity", 'String'>
     readonly monotubId: FieldRef<"TemperatureHumidity", 'String'>
   }
     
@@ -3042,20 +3023,6 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
-
-
-  /**
-   * Reference to a field of type 'MushroomStage'
-   */
-  export type EnumMushroomStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MushroomStage'>
-    
-
-
-  /**
-   * Reference to a field of type 'MushroomStage[]'
-   */
-  export type ListEnumMushroomStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MushroomStage[]'>
-    
   /**
    * Deep Input Types
    */
@@ -3122,7 +3089,7 @@ export namespace Prisma {
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     minute?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    mushroomStage?: EnumMushroomStageFilter<"TemperatureHumidity"> | $Enums.MushroomStage
+    mushroomStage?: StringFilter<"TemperatureHumidity"> | string
     monotubId?: StringFilter<"TemperatureHumidity"> | string
     monotub?: XOR<MonotubRelationFilter, MonotubWhereInput>
   }
@@ -3152,7 +3119,7 @@ export namespace Prisma {
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     minute?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    mushroomStage?: EnumMushroomStageFilter<"TemperatureHumidity"> | $Enums.MushroomStage
+    mushroomStage?: StringFilter<"TemperatureHumidity"> | string
     monotubId?: StringFilter<"TemperatureHumidity"> | string
     monotub?: XOR<MonotubRelationFilter, MonotubWhereInput>
   }, "id" | "monotubId_date_hourOfDay">
@@ -3185,7 +3152,7 @@ export namespace Prisma {
     hourOfDay?: IntWithAggregatesFilter<"TemperatureHumidity"> | number
     minute?: IntWithAggregatesFilter<"TemperatureHumidity"> | number
     date?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
-    mushroomStage?: EnumMushroomStageWithAggregatesFilter<"TemperatureHumidity"> | $Enums.MushroomStage
+    mushroomStage?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
     monotubId?: StringWithAggregatesFilter<"TemperatureHumidity"> | string
   }
 
@@ -3249,7 +3216,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
     monotub: MonotubCreateNestedOneWithoutTempHumidRecordsInput
   }
 
@@ -3261,7 +3228,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
     monotubId: string
   }
 
@@ -3272,7 +3239,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
     monotub?: MonotubUpdateOneRequiredWithoutTempHumidRecordsNestedInput
   }
 
@@ -3284,7 +3251,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
     monotubId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3296,7 +3263,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
     monotubId: string
   }
 
@@ -3307,7 +3274,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
   }
 
   export type TemperatureHumidityUncheckedUpdateManyInput = {
@@ -3318,7 +3285,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
     monotubId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3439,13 +3406,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type EnumMushroomStageFilter<$PrismaModel = never> = {
-    equals?: $Enums.MushroomStage | EnumMushroomStageFieldRefInput<$PrismaModel>
-    in?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    not?: NestedEnumMushroomStageFilter<$PrismaModel> | $Enums.MushroomStage
-  }
-
   export type MonotubRelationFilter = {
     is?: MonotubWhereInput
     isNot?: MonotubWhereInput
@@ -3541,16 +3501,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type EnumMushroomStageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MushroomStage | EnumMushroomStageFieldRefInput<$PrismaModel>
-    in?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    not?: NestedEnumMushroomStageWithAggregatesFilter<$PrismaModel> | $Enums.MushroomStage
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMushroomStageFilter<$PrismaModel>
-    _max?: NestedEnumMushroomStageFilter<$PrismaModel>
-  }
-
   export type MonotubCreateuserIDsInput = {
     set: string[]
   }
@@ -3630,10 +3580,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type EnumMushroomStageFieldUpdateOperationsInput = {
-    set?: $Enums.MushroomStage
   }
 
   export type MonotubUpdateOneRequiredWithoutTempHumidRecordsNestedInput = {
@@ -3722,13 +3668,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumMushroomStageFilter<$PrismaModel = never> = {
-    equals?: $Enums.MushroomStage | EnumMushroomStageFieldRefInput<$PrismaModel>
-    in?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    not?: NestedEnumMushroomStageFilter<$PrismaModel> | $Enums.MushroomStage
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -3761,16 +3700,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedEnumMushroomStageWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MushroomStage | EnumMushroomStageFieldRefInput<$PrismaModel>
-    in?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MushroomStage[] | ListEnumMushroomStageFieldRefInput<$PrismaModel>
-    not?: NestedEnumMushroomStageWithAggregatesFilter<$PrismaModel> | $Enums.MushroomStage
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMushroomStageFilter<$PrismaModel>
-    _max?: NestedEnumMushroomStageFilter<$PrismaModel>
-  }
-
   export type TemperatureHumidityCreateWithoutMonotubInput = {
     createdAt?: Date | string
     temperature: number
@@ -3778,7 +3707,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
   }
 
   export type TemperatureHumidityUncheckedCreateWithoutMonotubInput = {
@@ -3789,7 +3718,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
   }
 
   export type TemperatureHumidityCreateOrConnectWithoutMonotubInput = {
@@ -3829,7 +3758,7 @@ export namespace Prisma {
     hourOfDay?: IntFilter<"TemperatureHumidity"> | number
     minute?: IntFilter<"TemperatureHumidity"> | number
     date?: StringFilter<"TemperatureHumidity"> | string
-    mushroomStage?: EnumMushroomStageFilter<"TemperatureHumidity"> | $Enums.MushroomStage
+    mushroomStage?: StringFilter<"TemperatureHumidity"> | string
     monotubId?: StringFilter<"TemperatureHumidity"> | string
   }
 
@@ -3885,7 +3814,7 @@ export namespace Prisma {
     hourOfDay: number
     minute: number
     date: string
-    mushroomStage: $Enums.MushroomStage
+    mushroomStage: string
   }
 
   export type TemperatureHumidityUpdateWithoutMonotubInput = {
@@ -3895,7 +3824,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
   }
 
   export type TemperatureHumidityUncheckedUpdateWithoutMonotubInput = {
@@ -3906,7 +3835,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
   }
 
   export type TemperatureHumidityUncheckedUpdateManyWithoutMonotubInput = {
@@ -3917,7 +3846,7 @@ export namespace Prisma {
     hourOfDay?: IntFieldUpdateOperationsInput | number
     minute?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
-    mushroomStage?: EnumMushroomStageFieldUpdateOperationsInput | $Enums.MushroomStage
+    mushroomStage?: StringFieldUpdateOperationsInput | string
   }
 
 

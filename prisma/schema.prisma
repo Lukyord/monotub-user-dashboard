@@ -22,8 +22,8 @@ model Monotub {
 }
 
 model TemperatureHumidity {
-  id            Int           @id @default(autoincrement())
-  createdAt     DateTime      @default(now())
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
   temperature   Float
   humidity      Float
   hourOfDay     Int

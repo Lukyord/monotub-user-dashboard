@@ -135,12 +135,7 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-exports.MushroomStage = exports.$Enums.MushroomStage = {
-  INOCULATION: 'INOCULATION',
-  COLONIZATION: 'COLONIZATION',
-  FRUITING: 'FRUITING',
-  HARVESTING: 'HARVESTING'
-};
+
 
 exports.Prisma.ModelName = {
   Monotub: 'Monotub',
