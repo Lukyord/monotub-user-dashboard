@@ -4,14 +4,14 @@ import { addUserIdsToMonotubFormSchema } from "@/types/dashboard/addUserIdtoMono
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import prisma from "@prisma_/client"
+
+import { updateMonotubUserId } from "@/action/updateMonotubUserId"
+import { errorMessage } from "@/lib/errorMessage"
 
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { toast } from "sonner"
-import { findFirstMonotub } from "@/action/findFirstMonotub"
-import { updateMonotubUserId } from "@/action/updateMonotubUserId"
 
 type AddMonotubFormProps = {
   userId: string
@@ -25,31 +25,22 @@ export default function AddMonotubForm({ userId }: AddMonotubFormProps) {
     },
   })
 
-  //e2e4c012-7021-4779-bb1a-541d00c25554
   const handleSubmit = async (
     values: z.infer<typeof addUserIdsToMonotubFormSchema>
   ) => {
     const { monotubId } = values
 
-    const monotubExists = await findFirstMonotub(monotubId)
+    try {
+      const updatedMonotub = await updateMonotubUserId(monotubId, userId)
 
-    if (!monotubExists) {
-      return toast.error("Something went wrong", {
-        description: "Monotub ID does not exist. Please try again.",
+      toast.success("Success!", {
+        description: `Monotub ${updatedMonotub.name} added successfully.`,
+      })
+    } catch (error) {
+      return toast.error("Error!", {
+        description: errorMessage(error),
       })
     }
-
-    const updatedMonotub = await updateMonotubUserId(monotubId, userId)
-
-    if (!updatedMonotub) {
-      return toast.error("Something went wrong", {
-        description: "Monotub could not be added. Please try again.",
-      })
-    }
-
-    return toast.success("Success!", {
-      description: "Monotub added successfully.",
-    })
   }
 
   return (

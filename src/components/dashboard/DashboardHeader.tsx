@@ -1,16 +1,12 @@
 import React from "react"
 
-import { auth } from "@clerk/nextjs"
-import { redirect } from "next/navigation"
 import AddMonotubForm from "./AddMonotubForm"
 
-export default function DashboardHeader() {
-  const { userId } = auth()
+type DashboardHeaderProps = {
+  userId: string
+}
 
-  if (!userId) {
-    redirect("/sign-in")
-  }
-
+export default function DashboardHeader({ userId }: DashboardHeaderProps) {
   return (
     <div className="flex justify-between">
       <h1 className="text-4xl font-bold">Dashboard</h1>
