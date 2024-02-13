@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "@prisma_/client"
+
 import { createTempHumidSchema } from "./createTempHumidSchema"
 
 export async function POST(request: NextRequest, context: any) {
@@ -13,12 +14,12 @@ export async function POST(request: NextRequest, context: any) {
 
   const newTempHumid = await prisma.temperatureHumidity.create({
     data: {
-      date: body.date,
-      hourOfDay: body.hourOfDay,
-      temperature: body.temperature,
-      humidity: body.humidity,
-      minute: body.minute,
-      mushroomStage: body.mushroomStage,
+      date: validation.data.date,
+      hourOfDay: validation.data.hourOfDay,
+      temperature: validation.data.temperature,
+      humidity: validation.data.humidity,
+      minute: validation.data.minute,
+      mushroomStage: validation.data.mushroomStage,
       monotub: { connect: { id: params.id } },
     },
   })

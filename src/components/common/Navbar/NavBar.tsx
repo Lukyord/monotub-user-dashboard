@@ -13,7 +13,7 @@ export default function NavBar() {
   ]
 
   return (
-    <nav className="mb-5 flex h-14 items-center justify-between border-b px-5">
+    <nav className="flex items-center justify-between border-b p-5">
       <div className="flex gap-8">
         <Link href="/">
           <GiMushroomGills size={30} />
