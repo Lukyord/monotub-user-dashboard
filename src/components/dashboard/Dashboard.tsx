@@ -19,13 +19,24 @@ export default async function Dashboard({
       },
     },
   })
+  const TempHumids = await prisma.temperatureHumidity.findMany({
+    where: {
+      monotubId: {
+        equals: searchParams.monotub as string,
+      },
+    },
+  })
 
   return (
     <div>
-      <DashboardMonotubSelector monotubs={userMonotubs} />
+      <DashboardMonotubSelector
+        monotubs={userMonotubs}
+        searchParams={searchParams}
+      />
       <DashboardHighlights
         searchParams={searchParams}
         monotubs={userMonotubs}
+        TempHumids={TempHumids}
       />
     </div>
   )

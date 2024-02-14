@@ -50,7 +50,7 @@ export default function AddMonotubForm({ userId }: AddMonotubFormProps) {
           control={form.control}
           name="monotubId"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="grow">
               <FormControl>
                 <Input
                   id="monotub-id"
