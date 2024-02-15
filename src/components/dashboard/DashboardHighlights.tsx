@@ -17,28 +17,47 @@ export default function DashboardHighlights({
   monotubs,
   TempHumids,
 }: DashboardHighlightsProps) {
+  const currentStatus =
+    TempHumids.length > 0
+      ? TempHumids.sort(
+          (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+        )[0]
+      : null
+  const totalTemperature = TempHumids.reduce(
+    (sum, entry) => sum + entry.temperature,
+    0
+  )
+  const totalHumidity = TempHumids.reduce(
+    (sum, entry) => sum + entry.humidity,
+    0
+  )
+  const averageTemperature =
+    TempHumids.length > 0 ? totalTemperature / TempHumids.length : 0
+  const averageHumidity =
+    TempHumids.length > 0 ? totalHumidity / TempHumids.length : 0
+
   const highlights = [
     {
       title: "Current Status",
-      content: "25",
-      description: "average temperature",
+      content: `${currentStatus?.temperature || 0}°, ${currentStatus?.humidity || 0}%`,
+      description: "Current Status of the monotub",
       icon: <PiPulse size={24} />,
     },
     {
       title: "Stage Indicator",
-      content: "25",
+      content: currentStatus?.mushroomStage || "N/A",
       description: "average temperature",
       icon: <GiMushroom size={24} />,
     },
     {
       title: "Average Temperature",
-      content: "25",
+      content: `${averageTemperature.toFixed(2)}°`,
       description: "average temperature",
       icon: <FaTemperatureHigh size={24} />,
     },
     {
       title: "Average Humidity",
-      content: "25",
+      content: `${averageHumidity.toFixed(2)}%`,
       description: "average temperature",
       icon: <WiHumidity size={30} />,
     },

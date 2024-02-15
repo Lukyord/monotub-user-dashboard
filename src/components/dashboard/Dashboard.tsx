@@ -12,6 +12,13 @@ export default async function Dashboard({
   userId,
   searchParams,
 }: DashboardProps) {
+  let fromDate, toDate
+  fromDate = new Date(searchParams.from as string)
+  toDate = new Date(searchParams.to as string)
+
+  fromDate.setHours(fromDate.getHours() + 7)
+  toDate.setHours(toDate.getHours() + 7)
+
   const userMonotubs = await prisma.monotub.findMany({
     where: {
       userIDs: {
@@ -27,6 +34,17 @@ export default async function Dashboard({
     },
   })
 
+  const TempHumidsFiltered = TempHumids.filter((entry) => {
+    const entryDate = new Date(entry.date)
+    const fromDate = new Date(searchParams.from as string)
+    const toDate =
+      searchParams.to !== "null"
+        ? new Date(searchParams.to as string)
+        : fromDate
+
+    return entryDate >= fromDate && entryDate <= toDate
+  })
+
   return (
     <div>
       <DashboardMonotubSelector
@@ -36,7 +54,7 @@ export default async function Dashboard({
       <DashboardHighlights
         searchParams={searchParams}
         monotubs={userMonotubs}
-        TempHumids={TempHumids}
+        TempHumids={TempHumidsFiltered}
       />
     </div>
   )
