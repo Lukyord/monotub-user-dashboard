@@ -8,25 +8,18 @@ import { cn } from "@/lib/utils"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+
+type CalendarDateRangePickerProps = {
+  date: DateRange | undefined
+  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
+  className?: React.HTMLAttributes<HTMLDivElement>
+}
 
 export function CalendarDateRangePicker({
+  date,
+  setDate,
   className,
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const router = useRouter()
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: undefined,
-  })
-
-  //FIX: preserve other parameters in search params
-  useEffect(() => {
-    router.replace(
-      `?${new URLSearchParams({ from: date?.from?.toDateString() || "", to: date?.to?.toDateString() || "" })}`
-    )
-  }, [date, router])
-
+}: CalendarDateRangePickerProps) {
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
