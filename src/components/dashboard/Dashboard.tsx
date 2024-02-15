@@ -2,6 +2,7 @@ import prisma from "@prisma_/client"
 
 import DashboardMonotubSelector from "./DashboardMonotubSelector"
 import DashboardHighlights from "./DashboardHighlights"
+import DashboardGraph from "./DashboardGraph"
 
 type DashboardProps = {
   userId: string
@@ -56,6 +57,9 @@ export default async function Dashboard({
         monotubs={userMonotubs}
         TempHumids={TempHumidsFiltered}
       />
+      <div className="my-6 flex h-[70vh] w-[95vw] justify-center">
+        <DashboardGraph TempHumids={TempHumidsFiltered} />
+      </div>
     </div>
   )
 }

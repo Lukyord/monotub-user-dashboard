@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -44,11 +44,19 @@ export default function DashboardMonotubSelector({
   const from = date?.from ? format(date.from, "yyyy-MM-dd") : "null"
   const to = date?.to ? format(date.to, "yyyy-MM-dd") : "null"
 
-  useEffect(() => {
-    router.replace(
-      `?${new URLSearchParams({ monotub: value ? value : monotubs[0].id, from, to })}`
-    )
-  }, [from, to, router, value, monotubs])
+  useLayoutEffect(() => {
+    const currentMonotub = value ? value : monotubs[0].id
+    const queryParams = new URLSearchParams({
+      monotub: currentMonotub,
+      from,
+      to,
+    })
+
+    const currentSearchParams = new URLSearchParams(window.location.search)
+    if (currentSearchParams.toString() !== queryParams.toString()) {
+      router.replace(`?${queryParams}`, { scroll: false })
+    }
+  }, [from, to, value, monotubs, router])
 
   return (
     <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center">
