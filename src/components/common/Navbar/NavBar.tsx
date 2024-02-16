@@ -21,7 +21,7 @@ export default function NavBar() {
   ]
 
   return (
-    <nav className="flex items-center justify-between border-b p-5">
+    <nav className="flex h-[8vh] items-center justify-between border-b px-6">
       <div className="flex gap-8">
         <Link href="/">
           <GiMushroomGills size={30} />
@@ -38,7 +38,7 @@ export default function NavBar() {
 
       <div className="hidden sm:block">
         <SignedIn>
-          <UserButton afterSignOutUrl="/sign-in" />
+          <UserButton afterSignOutUrl="/" />
         </SignedIn>
         <SignedOut>
           <div className="flex gap-3">
