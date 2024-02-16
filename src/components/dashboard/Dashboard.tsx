@@ -57,7 +57,7 @@ export default async function Dashboard({
         monotubs={userMonotubs}
         TempHumids={TempHumidsFiltered}
       />
-      <div className="my-6 flex h-[70vh] w-[95vw] justify-center">
+      <div className="my-6 flex h-[50vh] w-[95vw] justify-center sm:h-[70vh]">
         <DashboardGraph TempHumids={TempHumidsFiltered} />
       </div>
     </div>
