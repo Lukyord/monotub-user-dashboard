@@ -46,19 +46,19 @@ export default function DashboardHighlights({
     {
       title: "Stage Indicator",
       content: currentStatus?.mushroomStage || "N/A",
-      description: "average temperature",
+      description: "Current mushroom stage",
       icon: <GiMushroom size={24} />,
     },
     {
       title: "Average Temperature",
       content: `${averageTemperature.toFixed(2)}°`,
-      description: "average temperature",
+      description: "Average temperature",
       icon: <FaTemperatureHigh size={24} />,
     },
     {
       title: "Average Humidity",
       content: `${averageHumidity.toFixed(2)}%`,
-      description: "average temperature",
+      description: "Average Humidity",
       icon: <WiHumidity size={30} />,
     },
   ]

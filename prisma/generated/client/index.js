@@ -133,7 +133,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\CodeBerm2\\2024\\mototub-user-dashboard\\prisma\\generated\\client",
+      "value": "/Users/kongtup/Documents/Dev/2024/monotub-user-dashboard/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -142,7 +142,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
@@ -150,8 +150,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
   "clientVersion": "5.9.1",
@@ -160,7 +159,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "ciName": "Vercel",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -170,7 +169,8 @@ const config = {
     }
   },
   "inlineSchema": "Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyIKICBvdXRwdXQgICA9ICIuL2dlbmVyYXRlZC9jbGllbnQiCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyICA9ICJwb3N0Z3Jlc3FsIgogIHVybCAgICAgICA9IGVudigiUE9TVEdSRVNfUFJJU01BX1VSTCIpIC8vIHVzZXMgY29ubmVjdGlvbiBwb29saW5nCiAgZGlyZWN0VXJsID0gZW52KCJQT1NUR1JFU19VUkxfTk9OX1BPT0xJTkciKSAvLyB1c2VzIGEgZGlyZWN0IGNvbm5lY3Rpb24KfQoKbW9kZWwgTW9ub3R1YiB7CiAgaWQgICAgICAgIFN0cmluZyAgIEBpZCBAZGVmYXVsdCh1dWlkKCkpCiAgbmFtZSAgICAgIFN0cmluZwogIGNyZWF0ZWRBdCBEYXRlVGltZSBAZGVmYXVsdChub3coKSkKICB1c2VySURzICAgU3RyaW5nW10gQGRlZmF1bHQoW10pCgogIHRlbXBIdW1pZFJlY29yZHMgVGVtcGVyYXR1cmVIdW1pZGl0eVtdCn0KCm1vZGVsIFRlbXBlcmF0dXJlSHVtaWRpdHkgewogIGlkICAgICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBjcmVhdGVkQXQgICAgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQogIHRlbXBlcmF0dXJlICAgRmxvYXQKICBodW1pZGl0eSAgICAgIEZsb2F0CiAgaG91ck9mRGF5ICAgICBJbnQKICBtaW51dGUgICAgICAgIEludAogIGRhdGUgICAgICAgICAgU3RyaW5nCiAgbXVzaHJvb21TdGFnZSBTdHJpbmcKCiAgbW9ub3R1YiAgIE1vbm90dWIgQHJlbGF0aW9uKGZpZWxkczogW21vbm90dWJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pCiAgbW9ub3R1YklkIFN0cmluZwoKICBAQHVuaXF1ZShbbW9ub3R1YklkLCBkYXRlLCBob3VyT2ZEYXldKQp9Cg==",
-  "inlineSchemaHash": "b5d0f9ef3f3a9de28f14d74299e84a694a1f4971309ce2d9df20ddbffea86177"
+  "inlineSchemaHash": "b5d0f9ef3f3a9de28f14d74299e84a694a1f4971309ce2d9df20ddbffea86177",
+  "noEngine": false
 }
 
 const fs = require('fs')
@@ -207,8 +207,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma/generated/client/query_engine-windows.dll.node")
+path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
+path.join(process.cwd(), "prisma/generated/client/libquery_engine-darwin-arm64.dylib.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/client/schema.prisma")
