@@ -13,8 +13,6 @@ import {
   Legend,
   ResponsiveContainer,
   ReferenceLine,
-  AreaChart,
-  Area,
   Bar,
   BarChart,
   Cell,
@@ -30,8 +28,12 @@ export default function DashboardTempHumidGraph({
   TempHumids,
 }: DashboardGraphProps) {
   const searchParams = useSearchParams()
-  const fromDate = searchParams.get("from")
-  const toDate = searchParams.get("to")
+  const fromDate = parseISO(searchParams.get("from") || "")
+  const to = searchParams.get("to")
+  const toDate =
+    to === "null" || to === null
+      ? fromDate
+      : parseISO(searchParams.get("to") || "")
 
   //disable defaultProps warning for nowx
   const error = console.error
@@ -84,9 +86,9 @@ export default function DashboardTempHumidGraph({
   }
 
   const preparedMushroomStageData = []
-  let currentDate = parseISO(fromDate || "")
-  while (currentDate <= parseISO(toDate || "")) {
-    const matchingDataOfCurrentDate = preparedTempHumidData.filter(
+  let currentDate = fromDate
+  while (currentDate <= toDate) {
+    const matchingDataOfCurrentDate = TempHumids.filter(
       (data) => data.date === format(currentDate, "yyyy-MM-dd")
     )
 
@@ -106,14 +108,12 @@ export default function DashboardTempHumidGraph({
     }
 
     preparedMushroomStageData.push({
-      date: format(currentDate, "dd-MM"),
+      date: format(currentDate, "dd/MM"),
       mushroomStage: mostFrequentStage,
-      constantValue: 100,
+      constantValue: 1,
     })
     currentDate = addDays(currentDate, 1)
   }
-
-  console.log(preparedMushroomStageData)
 
   return (
     <div className="w-[100%]">
@@ -188,13 +188,29 @@ export default function DashboardTempHumidGraph({
       <h2 className="my-6 text-3xl font-bold">Mushroom Stage Graph</h2>
       <ResponsiveContainer width="100%" height="100%">
         {preparedMushroomStageData.length > 0 ? (
-          <BarChart width={730} height={250} data={preparedMushroomStageData}>
+          <BarChart
+            width={500}
+            height={150}
+            data={preparedMushroomStageData}
+            margin={{
+              top: 5,
+              right: 70,
+              left: 70,
+              bottom: 5,
+            }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
-            <YAxis />
+            <YAxis hide />
             <Tooltip />
             <Legend />
-            <Bar dataKey="constantValue">
+            <Bar
+              dataKey="constantValue"
+              stackId="mushroomStage"
+              name="Inoculation"
+              fill="#8884d8"
+              barSize={400}
+            >
               {preparedMushroomStageData.map((entry, index) => (
                 <Cell
                   cursor="pointer"
@@ -203,6 +219,24 @@ export default function DashboardTempHumidGraph({
                 />
               ))}
             </Bar>
+            <Bar
+              dataKey=""
+              stackId="mushroomStage"
+              name="Colonization"
+              fill="#82ca9d"
+            />
+            <Bar
+              dataKey=""
+              stackId="mushroomStage"
+              name="Fruiting"
+              fill="#ffc658"
+            />
+            <Bar
+              dataKey=""
+              stackId="mushroomStage"
+              name="Harvesting"
+              fill="#d82626"
+            />
           </BarChart>
         ) : (
           <p className="my-10 h-full w-full text-center text-2xl">
