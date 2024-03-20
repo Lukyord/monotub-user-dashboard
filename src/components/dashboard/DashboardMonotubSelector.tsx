@@ -79,7 +79,7 @@ export default function DashboardMonotubSelector({
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandInput placeholder="Search framework..." />
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No monotub found.</CommandEmpty>
             <CommandGroup>
               {monotubs.map((monotub) => (
                 <CommandItem
