@@ -46,7 +46,7 @@ export default function DashboardHighlights({
     {
       title: "Stage Indicator",
       content: currentStatus?.mushroomStage || "N/A",
-      description: "Current mushroom stage",
+      description: "Current Mushroom Stage",
       icon: <GiMushroom size={24} />,
     },
     {
