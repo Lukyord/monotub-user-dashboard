@@ -18,31 +18,40 @@ type TempHumidGraphProps = {
 }
 
 export default function TempHumidGraph({ TempHumids }: TempHumidGraphProps) {
-  const formatQuarterlyTime = (hour: number, minute: number) => {
+  const formatHourlyTime = (hour: number) => {
     const paddedHour = hour.toString().padStart(2, "0")
-    const paddedMinute = Math.floor(minute / 15) * 15
-    return `${paddedHour}:${paddedMinute.toString().padStart(2, "0")}`
+    return `${paddedHour}:00`
   }
 
-  // Prepare data with missing quarter-hourly time intervals
   const preparedTempHumidData = []
   for (let hour = 0; hour < 24; hour++) {
-    for (let minute = 0; minute < 60; minute += 15) {
-      const matchingData = TempHumids.find(
-        (data) => data.hourOfDay === hour && data.minute === minute
+    const matchingData = TempHumids.filter((data) => data.hourOfDay === hour)
+    if (matchingData.length > 0) {
+      const totalTemperature = matchingData.reduce(
+        (acc, cur) => acc + cur.temperature,
+        0
       )
-      if (matchingData) {
-        preparedTempHumidData.push(matchingData)
-      } else {
-        preparedTempHumidData.push({
-          hourOfDay: hour,
-          minute: minute,
-          date: null,
-          temperature: null,
-          humidity: null,
-          mushroomStage: "N/A",
-        })
-      }
+      const totalHumidity = matchingData.reduce(
+        (acc, cur) => acc + cur.humidity,
+        0
+      )
+      const averageTemperature = totalTemperature / matchingData.length
+      const averageHumidity = totalHumidity / matchingData.length
+      preparedTempHumidData.push({
+        hourOfDay: hour,
+        date: matchingData[0].date, // Assuming date is the same for all data points within the same hour
+        temperature: averageTemperature.toFixed(2),
+        humidity: averageHumidity.toFixed(2),
+        mushroomStage: matchingData[0].mushroomStage, // Assuming mushroomStage is the same for all data points within the same hour
+      })
+    } else {
+      preparedTempHumidData.push({
+        hourOfDay: hour,
+        date: null,
+        temperature: null,
+        humidity: null,
+        mushroomStage: "N/A",
+      })
     }
   }
 
@@ -64,11 +73,7 @@ export default function TempHumidGraph({ TempHumids }: TempHumidGraphProps) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey={({ hourOfDay = 0, minute = 0 }) =>
-              formatQuarterlyTime(hourOfDay, minute)
-            }
-          />
+          <XAxis dataKey={({ hourOfDay = 0 }) => formatHourlyTime(hourOfDay)} />
           <YAxis
             yAxisId="left"
             domain={[15, 40]}
